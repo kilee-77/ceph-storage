@@ -1,0 +1,20 @@
+#aggr rename
+aggr rename -aggregate cluster2_01_SSD_1 -newname n1_aggr1
+aggr rename -aggregate cluster2_02_SSD_1 -newname n2_aggr1
+
+#DataStore Create
+vol create -volume DataStore -state online -aggregate n1_aggr1 -size 1100g -policy default
+lun create -path /vol/DataStore/LUN100 -size 1000g -ostype vmware -space-reserve enabled -space-allocation enabled
+
+#RDM Create
+vol create -volume RDM -state online -policy default -size 1000g -aggregate n2_aggr1
+lun create -path /vol/RDM/LUN00 -size 150g -ostype vmware -space-reserve enabled -space-allocation enabled
+lun create -path /vol/RDM/LUN01 -size 150g -ostype vmware -space-reserve enabled -space-allocation enabled
+lun create -path /vol/RDM/LUN02 -size 150g -ostype vmware -space-reserve enabled -space-allocation enabled
+
+#LUN Mapping
+igroup create -igroup vmware1 -protocol iscsi -ostype vmware -initiator iqn.1998-01.com.vmware:esx1:619845978:65,iqn.1998-01.com.vmware:esx2.demo.netapp.com:619845978:65,iqn.1998-01.com.vmware:esx3.demo.netapp.com:1549765610:65
+lun map -path /vol/DataStore/LUN100 -igroup vmware1 -lun-id 100
+lun map -path /vol/RDM/LUN00 -igroup vmware1 -lun-id 0
+lun map -path /vol/RDM/LUN01 -igroup vmware1 -lun-id 1
+lun map -path /vol/RDM/LUN02 -igroup vmware1 -lun-id 2
