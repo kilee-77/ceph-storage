@@ -1,4 +1,17 @@
-vcpu : 2
-ram : 4G
-disk : 50G
-osd RDM : 100G
+#DataStore 추가 데이터스토어 이름은
+DS-Netapp
+
+#vm resourse
+CPU : 2
+Memory : 4
+Hard disk1 : 50GB
+
+OSD
+Hard disk2 : 150GB (RDM)
+
+# vm temp name
+ceph-master (admin)
+ceph-mon (mon)
+ceph-node1 (node1)
+ceph-node2 (node2)
+ceph-node3 (node3)
