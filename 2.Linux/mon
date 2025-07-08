@@ -16,3 +16,4 @@ nmcli connection down ens33 && nmcli connection up ens33
 
 #host name
 hostnamectl set-hostname ceph-mon && exec bash
+
