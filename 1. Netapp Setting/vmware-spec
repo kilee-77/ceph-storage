@@ -1,0 +1,4 @@
+vcpu : 2
+ram : 4G
+disk : 50G
+osd RDM : 100G
