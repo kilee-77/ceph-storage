@@ -1,5 +1,5 @@
 ssh-keygen
-scp ~/.ssh/id_rsa.pub ceph-mon:~/.ssh/authorized_keys
+scp ~/.ssh/id_rsa.pub mon:~/.ssh/authorized_keys
 scp ~/.ssh/id_rsa.pub node1:~/.ssh/authorized_keys
 scp ~/.ssh/id_rsa.pub node2:~/.ssh/authorized_keys
 scp ~/.ssh/id_rsa.pub node3:~/.ssh/authorized_keys
