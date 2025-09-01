@@ -15,7 +15,7 @@ lun create -path /vol/RDM/LUN04 -size 150g -ostype vmware -space-reserve enabled
 
 #LUN Mapping
 igroup create -igroup vmware1 -protocol iscsi -ostype vmware -initiator iqn.1998-01.com.vmware:esx1:619845978:65,iqn.1998-01.com.vmware:esx2.demo.netapp.com:619845978:65,iqn.1998-01.com.vmware:esx3.demo.netapp.com:1549765610:65
-lun map -path /vol/DataStore/LUN100 -igroup vmware1 -lun-id 0
+lun map -path /vol/DataStore/LUN00 -igroup vmware1 -lun-id 0
 lun map -path /vol/RDM/LUN01 -igroup vmware1 -lun-id 1
 lun map -path /vol/RDM/LUN02 -igroup vmware1 -lun-id 2
 lun map -path /vol/RDM/LUN03 -igroup vmware1 -lun-id 3
