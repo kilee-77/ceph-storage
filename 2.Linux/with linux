@@ -1,0 +1,10 @@
+#리눅스를 사용할때 centos7, 8 대 yum 또는 dnf 를 사용시 미러주소가 접근이 안됨.
+
+#repos 미러주소 변경
+cd /etc/yum.repos.d/
+sed -i 's|mirrorlist=|#mirrorlist=|g' CentOS-*
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' CentOS-*
+
+#dnf 정보 삭제 및 캐시재설정
+dnf clean all
+dnf makecache
