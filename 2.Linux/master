@@ -15,4 +15,4 @@ nmcli connection modify ens33 ipv4.method manual
 nmcli connection down ens33 && nmcli connection up ens33
 
 #host name
-hostnamectl set-hostname ceph-master && exec bash
+hostnamectl set-hostname master && exec bash
