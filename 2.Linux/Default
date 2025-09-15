@@ -1,0 +1,5 @@
+# default install package
+dnf update -y
+dnf install -y wget nfs*
+dnf install -y podman
+
