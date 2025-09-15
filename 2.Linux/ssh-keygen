@@ -1,5 +1,5 @@
 ssh-keygen
-scp ~/.ssh/id_rsa.pub mon:~/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub node1:~/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub node2:~/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub node3:~/.ssh/authorized_keys
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@mon
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node1
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node2
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node3
