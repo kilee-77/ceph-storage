@@ -1,0 +1,41 @@
+#cephadm 다운로드
+curl --silent --remote-name --location https://download.ceph.com/rpm-squid/el9/noarch/cephadm
+chmod 744 cephadm
+
+#ceph 부트스트랩 설치
+./cephadm bootstrap --mon-ip 192.168.0.200 --initial-dashboard-user admin --initial-dashboard-password admin
+
+#ceph repo 정보 변경
+cat > /etc/yum.repos.d/ceph.repo <<EOF
+[ceph]
+name=Ceph Squid (18.x) for EL9
+baseurl=https://download.ceph.com/rpm-squid/el9/x86_64/
+enabled=1
+gpgcheck=1
+gpgkey=https://download.ceph.com/keys/release.asc
+EOF
+
+#ceph 인증
+scp /etc/ceph/ceph.pub node1:/root/.ssh/authorized_keys
+scp /etc/ceph/ceph.pub node2:/root/.ssh/authorized_keys
+scp /etc/ceph/ceph.pub node3:/root/.ssh/authorized_keys
+scp /etc/ceph/ceph.pub mon:/root/.ssh/authorized_keys
+
+#ceph node add (host name mapping)
+ceph orch host add mon 192.168.0.199
+ceph orch host add node1 192.168.0.201
+ceph orch host add node2 192.168.0.202
+ceph orch host add node3 192.168.0.203
+
+#ceph OSD add
+ceph orch daemon add osd node1:/dev/sdb
+ceph orch daemon add osd node2:/dev/sdb
+ceph orch daemon add osd node3:/dev/sdb
+
+# 클러스트 상태 확인
+ceph -s
+ceph osd tree
+
+#DashBoard 접속
+https://192.168.0.200:8443/
+admin / admin
